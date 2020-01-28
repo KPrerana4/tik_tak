@@ -3,12 +3,12 @@ import java.util.Arrays;
 public class TikTak
 {
     private Character[][] grid=new Character[3][3];
-    int no_of_inputs;
-    
+    int no_of_inputs;    
+
 	public static void main(String[] args) 
 	{
-		boolean f=false;
-		TikTak obj=new TikTak();
+		boolean game_win=false;
+		TikTak game_obj=new TikTak();
 		System.out.println("Player 1:X\t\tPlayer 2:O");
 		int count=0;
 		short player_no;
@@ -18,13 +18,13 @@ public class TikTak
 		  player_no=2;
 		  if(count%2==0)
 		     player_no=1;
-		  f=obj.take_input(player_no);
+		  game_win=game_obj.take_input(player_no);
 		  for(int i=0;i<3;i++)
-		     System.out.println(Arrays.toString(obj.grid[i]));
-		  if(f==true){System.out.println("\nPLAYER "+player_no+" WON");
+		     System.out.println(Arrays.toString(game_obj.grid[i]));
+		  if(game_win==true){System.out.println("\nPLAYER "+player_no+" WON");
 		     break;}
 		     
-		  if(obj.no_of_inputs==9){
+		  if(game_obj.no_of_inputs==9){
 		      System.out.println("Game over,No one won");
 		      break;
 		   }
@@ -33,43 +33,43 @@ public class TikTak
 	}
 	
 	
-    boolean check_row_coloum(int x,int y)
+    boolean check_row_coloum(int row_pos,int coloum_pos)
 	{
-	    Character c=grid[x][y];
-	    int f1=1,i,j;
+	    Character c=grid[row_pos][coloum_pos];
+	    int win=1,i,j;
 	            
 	    for(i=0;i<3;i++)
-	       if(grid[x][i]!=c)
-	          f1=0;
-	    if(f1==1)
+	       if(grid[row_pos][i]!=c)
+	          win=0;
+	    if(win==1)
 	        return true;
 	    
-	    f1=1;
+	    win=1;
 	    for(i=0;i<3;i++)
-	       if(grid[i][y]!=c)
-	           f1=0;
-	   if(f1==1)
+	       if(grid[i][coloum_pos]!=c)
+	           win=0;
+	   if(win==1)
 	      return true;
 	      
 	   return false;
 	}
 	
 	
-	boolean validate_diagonal_pos(int x,int y)
+	boolean validate_diagonal_pos(int row_pos,int coloum_pos)
 	{
-	   Character c=grid[x][y];
-	   int i,j,f1=1;
+	   Character c=grid[row_pos][coloum_pos];
+	   int i,j,win=1;
 	   for(i=0,j=0;i<3;i++,j++)
 	      if(grid[i][j]!=c)
-	         f1=0;
-	   if(f1==1)
+	         win=0;
+	   if(win==1)
 	      return true;
 	          
-	   f1=1;
+	   win=1;
 	   for(i=0,j=2;i<3;i++,j--)
 	      if(grid[i][j]!=c)
-	         f1=0;
-	   if(f1==1)
+	         win=0;
+	   if(win==1)
 	      return true;
 	         
 	   return false;
@@ -78,7 +78,7 @@ public class TikTak
 	
     boolean take_input(short player_no)
 	{
-	    Scanner sc=new Scanner(System.in);
+	    Scanner scanner_obj=new Scanner(System.in);
 	    boolean row_coloum=false,diagonal=false;
 	    Character c='O';
 	    if(player_no==1)
@@ -86,8 +86,8 @@ public class TikTak
 	    while(true)
 		  {
 		    System.out.println("\nPlayer "+player_no+", Enter position(as x y):");
-		    int row_pos=sc.nextInt();
-		    int coloum_pos=sc.nextInt();
+		    int row_pos=scanner_obj.nextInt();
+		    int coloum_pos=scanner_obj.nextInt();
 		    if(row_pos<3 && coloum_pos<3 && grid[row_pos][coloum_pos]==null)
 		    {
 		        no_of_inputs++;
@@ -102,4 +102,7 @@ public class TikTak
 		  return false;
 	}
 }
+
+
+
 
