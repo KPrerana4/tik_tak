@@ -2,3 +2,4 @@ Board.class
 Player.class
 TikTak.class
 TicTacToe.class
+TicTacToeController.class

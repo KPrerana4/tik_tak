@@ -8,7 +8,7 @@ class Player
 		name="";
 		positions="";
 	}
-	
+
 	Player(String name)
 	{
 		this.name=name;
