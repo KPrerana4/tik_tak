@@ -2,7 +2,7 @@ import java.util.Scanner;
 class Board
 {
 	Character[] Grid=new Character[9];
-	int input(Character c)
+	int input(Character XorO)
 	{
 		Scanner read=new Scanner(System.in);
 		while(true)
@@ -10,7 +10,7 @@ class Board
 			int pos=read.nextInt();
 			if(validateInput(pos))
 			{
-				Grid[pos-1]=c;
+				Grid[pos-1]=XorO;
 				return pos;
 			}
 		}
