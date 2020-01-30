@@ -1,7 +1,9 @@
+
 class TikTak
 {
 	public static void main(String args[])
 	{
-		new TicTacToeController().Game();
+		TicTacToe tictactoe  = new TicTacToe();
+		tictactoe.startGame();
 	}
 }

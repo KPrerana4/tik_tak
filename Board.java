@@ -2,25 +2,28 @@ import java.util.Scanner;
 class Board
 {
 	Character[] Grid=new Character[9];
-	int input(Character XorO)
+	int input(Character playerLetter)
 	{
 		Scanner read=new Scanner(System.in);
-		while(true)
+		boolean continueInput=true;
+		while(continueInput)
 		{
-			int pos=read.nextInt();
-			if(validateInput(pos))
+			int position=read.nextInt();
+			if(validateInput(position))
 			{
-				Grid[pos-1]=XorO;
-				return pos;
+				Grid[position-1]=playerLetter;
+				return position;
 			}
 		}
 	}
-	boolean validateInput(int pos)
+
+	boolean validateInput(int position)
 	{
-		if(pos<10 && Grid[pos-1]==null)
+		if(position!=0 && position<10  && Grid[position-1]==null)
 			return true;
 		return false;
 	}
+
 	boolean winCheck(String playerPositions,int[][] successPositions)
 	{
 		for(int condition=0;condition<successPositions.length;condition++)
@@ -34,12 +37,13 @@ class Board
 		}
 		return false;
 	}
+
 	void gridPrinting()
 	{
-		for(int pos=0;pos<Grid.length;pos++)
+		for(int position=0;position<Grid.length;position++)
 		{
-			System.out.print(Grid[pos]+" ");
-			if(pos==2 ||pos==5 ||pos==8)
+			System.out.print(Grid[position]+" ");
+			if(position==2 ||position==5 ||position==8)
 				System.out.println();
 		}
 	}
