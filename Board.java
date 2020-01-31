@@ -2,6 +2,7 @@ import java.util.Scanner;
 class Board
 {
 	Character[] Grid=new Character[9];
+
 	int input(Character playerLetter)
 	{
 		Scanner read=new Scanner(System.in);
@@ -15,6 +16,7 @@ class Board
 				return position;
 			}
 		}
+		return -1;
 	}
 
 	boolean validateInput(int position)
