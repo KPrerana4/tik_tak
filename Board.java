@@ -5,9 +5,8 @@ class Board
 
 	boolean validateInput(int position)
 	{
-		if(position!=0 && position<10  && Grid[position-1]==null)
-			return true;
-		return false;
+		boolean isPositionValid=position!=0 && position<10 && Grid[position-1]==null;
+		return isPositionValid;
 	}
 
 	boolean winCheck(int[] playerPositions,int[][] successPositions)

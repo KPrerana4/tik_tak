@@ -3,12 +3,12 @@ class Player
 {
 	String name;
 	int[] positions;
-	int positionIndex;
+	int noOfPositions;
 	Player()
 	{
 		name="";
 		positions=new int[6];
-		positionIndex=0;
+		noOfPositions=0;
 	}
 
 	Player(String name)
@@ -19,16 +19,16 @@ class Player
 	{
 		
 		Scanner read=new Scanner(System.in);
-		boolean continueInput=true;
-		while(continueInput)
+		boolean shouldContinueInput=true;
+		while(shouldContinueInput)
 		{
 			int position=read.nextInt();
 			if(board.validateInput(position))
 			{
-				positionIndex+=1;
-				positions[positionIndex]=position;
+				positions[noOfPositions]=position;
+				noOfPositions+=1;
 				board.Grid[position-1]=playerLetter;
-				break;
+				shouldContinueInput=false;
 			}
 		}	
 	}

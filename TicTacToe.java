@@ -13,7 +13,6 @@ class TicTacToe
 		{
 			playerLetter=(currentPlayerNo=switchPlayer())==0 ? 'X': 'O';
 			System.out.println("Player"+(currentPlayerNo+1)+" enter position:");
-			int positionIndex=players[currentPlayerNo].positionIndex;
 			players[currentPlayerNo].input(board,playerLetter,currentPlayerNo);
 			boolean win=board.winCheck(players[currentPlayerNo].positions,winningPositions);
 			if(win) 
