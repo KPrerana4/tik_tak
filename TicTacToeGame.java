@@ -1,8 +1,8 @@
-class TicTacToeGame
+public class TicTacToeGame
 {
 	public static void main(String args[])
 	{
-		TicTacToe tictactoe  = new TicTacToe();
-		tictactoe.startGame();
+		TicTacToe tictactoe = new TicTacToe();
+		tictactoe.game();
 	}
 }

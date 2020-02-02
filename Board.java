@@ -1,36 +1,53 @@
-import java.util.Scanner;
-class Board
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+public class Board
 {
-	Character[] Grid=new Character[9];
+	private Character[] grid = {'-','-','-','-','-','-','-','-','-'};
 
-	boolean validateInput(int position)
+	void placeSymbolInGrid(int position,Character symbol)
 	{
-		boolean isPositionValid=position!=0 && position<10 && Grid[position-1]==null;
-		return isPositionValid;
+		grid[position-1] = symbol;
 	}
 
-	boolean winCheck(int[] playerPositions,int[][] successPositions)
+	boolean validatePosition(int position)
 	{
-		for(int condition=0;condition<successPositions.length;condition++)
-		{
-			int count=0;
-			for(int position=0;position<successPositions[condition].length;position++)
-				for(int playerPosition=0;playerPosition<playerPositions.length;playerPosition++)
-					if(playerPositions[playerPosition]==successPositions[condition][position])
-						count++;
-			if(count==successPositions[condition].length)
-				return true;
-		}
-		return false;
+		boolean validationResult = position>0 && position<10 && (grid[position-1]=='-');
+		return validationResult;
 	}
 
 	void gridPrinting()
 	{
-		for(int position=0;position<Grid.length;position++)
+		Character[] delimeters = {' ',' ','\n',' ',' ','\n',' ',' ','\n'};
+		int gridLength = grid.length;
+		for(int position = 0; position < gridLength ; position++)
 		{
-			System.out.print(Grid[position]+" ");
-			if(position==2 ||position==5 ||position==8)
-				System.out.println();
+			System.out.print(grid[position] + " " +delimeters[position]);
 		}
+	}
+
+	boolean isGridFilled()
+	{
+		int gridPosition,gridLength = grid.length;
+		boolean gridFilled=false;
+		for(gridPosition = 0; gridPosition < gridLength && grid[gridPosition] != '-' ; gridPosition++)
+		{
+			gridFilled=true;
+		}
+		return gridFilled && (gridPosition == gridLength);
+	}
+
+	boolean winCheck(ArrayList<Integer> playerPositions,Integer[][] winningConditions)
+	{
+		int noOfWinningConditions = winningConditions.length;
+		for(int condition = 0; condition < noOfWinningConditions ; condition++)
+		{
+			List<Integer>  positions = Arrays.asList(winningConditions[condition]);
+			if(playerPositions.containsAll(positions))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
