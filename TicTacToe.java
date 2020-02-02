@@ -12,16 +12,16 @@ public class TicTacToe
 		currentPlayer = player1;
 	}
 
-	void game()
+	void startGame()
 	{
-		int winnerNo = startGame();
+		int winnerNo = game();
 		String result = "You won";
 		if(winnerNo == -1)
 			result = "No one won";
 		System.out.println(result);
 	}
 
-	int startGame()
+	int game()
 	{
 		boolean shouldContinueGame=true;
 		boolean playerWin;
