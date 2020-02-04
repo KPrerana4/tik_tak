@@ -10,10 +10,13 @@ public class Board
 		grid[position-1] = symbol;
 	}
 
-	boolean validatePosition(int position)
+	boolean isPositionValid(int position)
 	{
-		boolean validationResult = position>0 && position<10 && (grid[position-1]=='-');
-		return validationResult;
+		Character gridDefaultSymbol = '-';
+		boolean isPositionValueDefault = grid[position-1] == gridDefaultSymbol;
+		int gridLength = grid.length;
+		boolean isValidPosition = position>0 && position<=gridLength && isPositionValueDefault;
+		return isValidPosition;
 	}
 
 	void gridPrinting()

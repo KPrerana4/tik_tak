@@ -1,55 +1,51 @@
 public class TicTacToe
 {
 	Integer[][] winningConditions = {{1,2,3},{4,5,6},{7,8,9},{1,4,7},{2,5,8},{3,6,9},{1,5,9},{3,5,7}};
-	Player player1 = new Player('X',0);
-	Player player2 = new Player('O',1);
+	Player player1 = new Player('X');
+	Player player2 = new Player('O');
 	Board board;
 	Player currentPlayer;
+	Player winner;
 
 	TicTacToe()
 	{
 		board = new Board();
 		currentPlayer = player1;
+		winner = null;
 	}
 
-	void startGame()
+	void printWinner()
 	{
-		int winnerNo = game();
 		String result = "You won";
-		if(winnerNo == -1)
+		if(winner == null)
 			result = "No one won";
 		System.out.println(result);
 	}
 
-	int game()
+	void game()
 	{
-		boolean shouldContinueGame=true;
 		boolean playerWin;
-		while(shouldContinueGame)
-		{
-			playerMove();
+		do {
+			playerRole();
 			playerWin = board.winCheck(currentPlayer.positions, winningConditions);
-			if(playerWin)
-				return currentPlayer.playerNo;
-			shouldContinueGame = !board.isGridFilled();
 			switchPlayer();
+		}while(!(playerWin || board.isGridFilled()) );
+		switchPlayer();
+		if(playerWin) {
+			winner = currentPlayer;
 		}
-		return -1;
+		printWinner();
 	}
 
-	void playerMove()
+	void playerRole()
 	{
-		boolean shouldContinueInput = true;
-		while(shouldContinueInput)
+		int position = currentPlayer.input();
+		while(!board.isPositionValid(position))
 		{
-			int position = currentPlayer.input();
-			if(board.validatePosition(position))
-			{
-				shouldContinueInput = false;
-				currentPlayer.addNewPosition(position);
-				currentPlayer.placeSymbol(board,position);
-			}
+			position = currentPlayer.input();
 		}
+		currentPlayer.addNewPosition(position);
+		board.placeSymbolInGrid(position,currentPlayer.symbol);
 		board.gridPrinting();
 	}
 
